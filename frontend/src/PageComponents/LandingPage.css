@@ -1,0 +1,58 @@
+/* Full page background */
+.landing-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  display: flex;
+  align-items: center;
+}
+
+/* Main card */
+.landing-card {
+  background: #ffffff;
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.landing-title {
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #212529;
+}
+
+/* Subtitle */
+.landing-subtitle {
+  color: #6c757d;
+  font-size: 1.05rem;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* Features */
+.feature-section {
+  margin-bottom: 30px;
+}
+
+.feature-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.feature-list li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+/* Login button */
+.login-btn {
+  padding: 12px 40px;
+  font-weight: 500;
+}
+
+/* Tech stack text */
+.tech-stack {
+  margin-top: 25px;
+  font-size: 0.85rem;
+  color: #868e96;
+}

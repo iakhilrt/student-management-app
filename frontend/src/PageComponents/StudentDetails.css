@@ -1,0 +1,54 @@
+/* Card container */
+.student-detail-card {
+  max-width: 520px;
+  border-radius: 12px;
+  border: none;
+  background-color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Title spacing handled by content */
+.student-detail-card .card-body {
+  padding: 30px;
+}
+
+/* Each row */
+.student-detail-card p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin: 0;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #f1f3f5;
+}
+
+/* Remove border from last row */
+.student-detail-card p:last-child {
+  border-bottom: none;
+}
+
+/* Labels */
+.student-detail-card strong {
+  color: #495057;
+  font-weight: 600;
+}
+
+/* Values */
+.student-detail-card span,
+.student-detail-card p {
+  color: #212529;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .student-detail-card {
+    max-width: 100%;
+  }
+
+  .student-detail-card p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

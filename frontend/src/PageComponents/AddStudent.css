@@ -1,0 +1,12 @@
+.add-student-card {
+  max-width: 600px;
+}
+
+form label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+button {
+  padding: 8px 24px;
+}
