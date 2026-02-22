@@ -7,7 +7,7 @@ function LandingPage() {
   const API = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    fetch(`${API}/api/students/health`);
+    fetch(`${API}/api/students/health/check`);
   }, []);
 
   return (

@@ -22,7 +22,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/health")
+    @GetMapping("/health/check")
     public String health() {
         return "OK";
     }
