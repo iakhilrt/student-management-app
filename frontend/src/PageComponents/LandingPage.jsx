@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
+import { useEffect } from "react";
 
 function LandingPage() {
+
+  const API = import.meta.env.VITE_API_URL;
+
+  useEffect(() => {
+    fetch(`${API}/api/students/health`);
+  }, []);
+
   return (
     <div className="landing-wrapper">
 

@@ -22,6 +22,11 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    @GetMapping("/health")
+    public String health() {
+        return "OK";
+    }
+
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody StudentRequestDTO modal) {
     StudentResponseDTO saved = studentService.register(modal);
