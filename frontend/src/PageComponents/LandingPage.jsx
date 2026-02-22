@@ -2,54 +2,73 @@ import { Link } from "react-router-dom";
 import "./LandingPage.css";
 
 function LandingPage() {
-
-  const API = import.meta.env.VITE_API_URL;
-  
   return (
     <div className="landing-wrapper">
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-md-8 text-center landing-card">
 
-            <h1 className="landing-title">
-              Student Management System
+      {/* Navbar */}
+      <nav className="landing-navbar">
+        <div className="container d-flex justify-content-between align-items-center">
+          <span className="brand">🎓 Student Management</span>
+          <Link to="/login" className="btn btn-outline-light btn-sm">
+            Admin Login
+          </Link>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <div className="container hero-section">
+        <div className="row align-items-center">
+
+          <div className="col-md-6">
+            <h1 className="hero-title">
+              Smart & Efficient Student Management
             </h1>
 
-            <p className="landing-subtitle">
-              A centralized web application designed to efficiently manage
-              student records within an educational institution. This system
-              enables administrators to create, view, update, and maintain
-              student information through a secure and user-friendly interface.
+            <p className="hero-subtitle">
+              A centralized web application designed to manage student records
+              securely and efficiently. Built using modern full-stack
+              technologies for scalability and performance.
             </p>
 
-            <div className="row text-start feature-section">
-              <div className="col-md-6">
-                <ul className="feature-list">
-                  <li>✔ Add and manage student records</li>
-                  <li>✔ View detailed student profiles</li>
-                  <li>✔ Update academic information</li>
-                </ul>
-              </div>
-              <div className="col-md-6">
-                <ul className="feature-list">
-                  <li>✔ Secure admin access</li>
-                  <li>✔ REST API based architecture</li>
-                  <li>✔ Responsive web interface</li>
-                </ul>
-              </div>
+            <div className="hero-buttons">
+              <Link to="/login" className="btn btn-primary btn-lg me-3">
+                Get Started
+              </Link>
+
+              <a
+                href="https://github.com/iakhilrt/student-management-app.git"
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-outline-light btn-lg"
+              >
+                View Source
+              </a>
             </div>
-
-            <Link to="/login" className="btn btn-primary btn-lg login-btn">
-              Admin Login
-            </Link>
-
-            <div className="tech-stack">
-              Built using React, Spring Boot, REST APIs, and MySQL
-            </div>
-
           </div>
+
+          <div className="col-md-6 text-center">
+            <div className="feature-card">
+              <h5>Key Features</h5>
+              <ul>
+                <li>✔ Secure Admin Authentication</li>
+                <li>✔ Full CRUD Operations</li>
+                <li>✔ Pagination & REST API</li>
+                <li>✔ Responsive Dashboard UI</li>
+                <li>✔ Built with React & Spring Boot</li>
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="landing-footer">
+        <p>
+          Built with React, Spring Boot & MySQL • © {new Date().getFullYear()}
+        </p>
+      </footer>
+
     </div>
   );
 }

@@ -19,14 +19,22 @@ public class AdminService {
     }
 
     public void login(AdminLoginRequest requestData) {
-        List<String> error = new ArrayList<>();
-        AdminEntity adminEntity=adminRepository.loginByNameAndPassword(requestData.getUsername(),requestData.getPassword());
-        if (adminEntity == null){
-            error.add("invalid mail Id or Password ");
-        }
-        if (!error.isEmpty()){
-            throw  new Validation(error,"error");
 
+        List<String> error = new ArrayList<>();
+
+        AdminEntity adminEntity = adminRepository
+                .findByUsername(requestData.getUsername())
+                .orElse(null);
+
+        if (adminEntity == null ||
+                !adminEntity.getPassword().equals(requestData.getPassword())) {
+
+            error.add("Invalid username or password");
+        }
+
+        if (!error.isEmpty()) {
+            throw new Validation(error, "error");
         }
     }
+
 }

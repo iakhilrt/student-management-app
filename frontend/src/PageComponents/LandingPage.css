@@ -1,58 +1,77 @@
-/* Full page background */
+/* Background */
 .landing-wrapper {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+/* Navbar */
+.landing-navbar {
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.brand {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+/* Hero */
+.hero-section {
+  flex: 1;
   display: flex;
   align-items: center;
+  padding: 60px 0;
 }
 
-/* Main card */
-.landing-card {
-  background: #ffffff;
-  padding: 50px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-/* Title */
-.landing-title {
+.hero-title {
+  font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 20px;
-  color: #212529;
 }
 
-/* Subtitle */
-.landing-subtitle {
-  color: #6c757d;
+.hero-subtitle {
   font-size: 1.05rem;
+  opacity: 0.9;
   margin-bottom: 30px;
   line-height: 1.6;
 }
 
-/* Features */
-.feature-section {
-  margin-bottom: 30px;
+.hero-buttons .btn {
+  min-width: 160px;
 }
 
-.feature-list {
+/* Feature Card */
+.feature-card {
+  background: white;
+  color: #1f2937;
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  text-align: left;
+}
+
+.feature-card h5 {
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.feature-card ul {
   list-style: none;
   padding-left: 0;
 }
 
-.feature-list li {
+.feature-card li {
   margin-bottom: 10px;
   font-size: 0.95rem;
 }
 
-/* Login button */
-.login-btn {
-  padding: 12px 40px;
-  font-weight: 500;
-}
-
-/* Tech stack text */
-.tech-stack {
-  margin-top: 25px;
+/* Footer */
+.landing-footer {
+  text-align: center;
+  padding: 20px;
   font-size: 0.85rem;
-  color: #868e96;
+  background: rgba(0,0,0,0.2);
 }

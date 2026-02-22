@@ -30,7 +30,7 @@ function StudentDetails() {
 
                 const result = await response.json();
 
-                setStudent(result);  // or result.data
+                setStudent(result.data);  // or result.data
 
             } catch (error) {
                 console.error("Error fetching student:", error);

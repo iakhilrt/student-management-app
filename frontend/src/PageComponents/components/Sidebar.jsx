@@ -1,16 +1,23 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Sidebar() {
   return (
     <div className="sidebar">
-      <ul>
-        <li><Link to="/dashboard">Dashboard</Link></li>
-        <li><Link to="/students">View Students</Link></li>
-        <li><Link to="/add">Add Student</Link></li>
-      </ul>
+      <h6 className="sidebar-title">MAIN MENU</h6>
+
+      <NavLink to="/dashboard" className="sidebar-link">
+        📊 Dashboard
+      </NavLink>
+
+      <NavLink to="/students" className="sidebar-link">
+        👨‍🎓 Students
+      </NavLink>
+
+      <NavLink to="/add" className="sidebar-link">
+        ➕ Add Student
+      </NavLink>
     </div>
   );
 }
 
 export default Sidebar;
-

@@ -3,84 +3,55 @@ import { useNavigate } from "react-router-dom";
 import "./AdminLogin.css";
 
 function AdminLogin() {
-  const API = import.meta.env.VITE_API_URL; // example: http://localhost:8080/api
+  const API = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    setLoading(true);
 
-    try {
-      const response = await fetch(`${API}/api/admin/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-        }),
-      });
+    const response = await fetch(`${API}/api/admin/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Login failed");
-      }
-
-      // Optional: store login state
+    if (response.ok) {
       localStorage.setItem("isAdminLoggedIn", "true");
-
       navigate("/dashboard");
-    } catch (err) {
-      setError(err.message || "Invalid username or password");
-    } finally {
-      setLoading(false);
+    } else {
+      alert("Invalid credentials");
     }
   };
 
   return (
     <div className="login-wrapper">
       <div className="login-card">
-        <h2 className="login-title">Admin Login</h2>
-
-        <p className="login-subtitle">
-          Please enter your admin credentials to continue
-        </p>
-
-        {error && <div className="alert alert-danger">{error}</div>}
+        <h3 className="fw-bold mb-3 text-center">Admin Login</h3>
 
         <form onSubmit={handleSubmit}>
-          <div className="mb-3 text-start">
-            <label className="form-label">Username</label>
-            <input
-              type="text"
-              className="form-control"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
+          <input
+            type="text"
+            className="form-control mb-3"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
 
-          <div className="mb-4 text-start">
-            <label className="form-label">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
+          <input
+            type="password"
+            className="form-control mb-4"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-          <button type="submit" className="btn btn-primary w-100" disabled={loading}>
-            {loading ? "Logging in..." : "Login"}
+          <button className="btn btn-primary w-100">
+            Login
           </button>
         </form>
       </div>
