@@ -1,9 +1,13 @@
 .login-wrapper {
   min-height: 100vh;
-  background: linear-gradient(to right, #1e3a8a, #2563eb);
+  min-height: 100dvh;
+  min-height: 100svh;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
 }
 
 .login-card {

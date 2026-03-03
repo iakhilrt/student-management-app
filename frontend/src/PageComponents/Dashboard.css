@@ -54,3 +54,22 @@
 .sidebar-link.active {
   background: #2563eb;
 }
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 15px;
+  }
+
+  .sidebar-link {
+    margin-bottom: 0;
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+}

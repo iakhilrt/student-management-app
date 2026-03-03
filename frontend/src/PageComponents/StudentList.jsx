@@ -12,19 +12,15 @@ function StudentList() {
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-
     const fetchStudents = async () => {
       const res = await fetch(`${API}/api/students?page=${page}&size=10`);
       const data = await res.json();
-      console.log(data);
-      
 
       setStudents(data.data);
       setTotalPages(data.totalPages);
     };
 
     fetchStudents();
-
   }, [page]);
 
   const handleDelete = async (id) => {
@@ -34,12 +30,13 @@ function StudentList() {
       method: "DELETE",
     });
 
-    setStudents(prev => prev.filter(s => s.id !== id));
+    setStudents((prev) => prev.filter((s) => s.id !== id));
   };
 
   return (
     <>
       <Navbar />
+
       <div className="dashboard-container">
         <Sidebar />
 
@@ -49,52 +46,56 @@ function StudentList() {
           <div className="card shadow-sm">
             <div className="card-body">
 
-              <table className="table table-hover">
-                <thead className="table-light">
-                  <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Course</th>
-                    <th>Year</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  {students.map(student => (
-                    <tr key={student.id}>
-                      <td>{student.id}</td>
-                      <td>{student.name}</td>
-                      <td>{student.course}</td>
-                      <td>{student.year}</td>
-                      <td>
-                        <button
-                          className="btn btn-info btn-sm me-2"
-                          onClick={() => navigate(`/students/${student.id}`)}
-                        >
-                          View
-                        </button>
-
-                        <button
-                          className="btn btn-warning btn-sm me-2"
-                          onClick={() => navigate(`/students/edit/${student.id}`)}
-                        >
-                          Edit
-                        </button>
-
-                        <button
-                          className="btn btn-danger btn-sm"
-                          onClick={() => handleDelete(student.id)}
-                        >
-                          Delete
-                        </button>
-                      </td>
+              <div className="table-responsive">
+                <table className="table table-hover align-middle">
+                  <thead className="table-light">
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Course</th>
+                      <th>Year</th>
+                      <th className="text-center">Actions</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
 
-              <div className="d-flex justify-content-between mt-3">
+                  <tbody>
+                    {students.map((student) => (
+                      <tr key={student.id}>
+                        <td>{student.id}</td>
+                        <td>{student.name}</td>
+                        <td>{student.course}</td>
+                        <td>{student.year}</td>
+                        <td className="text-center">
+                          <div className="d-flex flex-wrap gap-2 justify-content-center">
+                            <button
+                              className="btn btn-info btn-sm"
+                              onClick={() => navigate(`/students/${student.id}`)}
+                            >
+                              View
+                            </button>
+
+                            <button
+                              className="btn btn-warning btn-sm"
+                              onClick={() => navigate(`/students/edit/${student.id}`)}
+                            >
+                              Edit
+                            </button>
+
+                            <button
+                              className="btn btn-danger btn-sm"
+                              onClick={() => handleDelete(student.id)}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 mt-3">
                 <button
                   className="btn btn-secondary"
                   disabled={page === 0}
@@ -103,7 +104,9 @@ function StudentList() {
                   Previous
                 </button>
 
-                <span>Page {page + 1} of {totalPages}</span>
+                <span className="fw-semibold">
+                  Page {page + 1} of {totalPages}
+                </span>
 
                 <button
                   className="btn btn-secondary"

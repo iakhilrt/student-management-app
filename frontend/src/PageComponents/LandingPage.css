@@ -1,10 +1,12 @@
 /* Background */
 .landing-wrapper {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  min-height: 100dvh; /* modern fix */
   display: flex;
   flex-direction: column;
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
   color: white;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* Navbar */
@@ -21,8 +23,6 @@
 /* Hero */
 .hero-section {
   flex: 1;
-  display: flex;
-  align-items: center;
   padding: 60px 0;
 }
 

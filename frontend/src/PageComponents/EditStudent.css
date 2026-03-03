@@ -9,12 +9,24 @@
   padding: 30px;
 }
 
-form label {
+/* Scope styles only inside edit card */
+.edit-student-card label {
   font-size: 0.9rem;
   font-weight: 500;
   color: #495057;
 }
 
-button {
+.edit-student-card button {
   padding: 8px 22px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .edit-student-card {
+    max-width: 100%;
+  }
+
+  .edit-student-card .card-body {
+    padding: 20px;
+  }
 }

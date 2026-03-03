@@ -17,6 +17,7 @@ function Dashboard() {
   return (
     <>
       <Navbar />
+
       <div className="dashboard-container">
         <Sidebar />
 
@@ -24,21 +25,21 @@ function Dashboard() {
           <h2 className="mb-4 fw-bold">Admin Dashboard</h2>
 
           <div className="row g-4">
-            <div className="col-md-4">
+            <div className="col-12 col-sm-6 col-lg-4">
               <div className="dashboard-card bg-primary text-white">
                 <h6>Total Students</h6>
                 <h2>{totalStudents}</h2>
               </div>
             </div>
 
-            <div className="col-md-4">
+            <div className="col-12 col-sm-6 col-lg-4">
               <div className="dashboard-card bg-success text-white">
                 <h6>System Status</h6>
                 <h2>Online</h2>
               </div>
             </div>
 
-            <div className="col-md-4">
+            <div className="col-12 col-sm-6 col-lg-4">
               <div className="dashboard-card bg-dark text-white">
                 <h6>Admin</h6>
                 <h2>Active</h2>
