@@ -9,6 +9,7 @@ import StudentList from './PageComponents/StudentList';
 import AddStudent from './PageComponents/AddStudent';
 import StudentDetails from './PageComponents/StudentDetails';
 import EditStudent from './PageComponents/EditStudent';
+import { Analytics } from '@vercel/analytics/react';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -22,6 +23,9 @@ createRoot(document.getElementById('root')).render(
         <Route path="/students/:id" element={<StudentDetails />} />
         <Route path="/students/edit/:id" element={<EditStudent />} />
       </Routes>
+
+      <Analytics />
+
     </BrowserRouter>
   </StrictMode>,
 )
