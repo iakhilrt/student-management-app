@@ -1,10 +1,50 @@
-HELP.md
+# ===============================
+
+# Maven / Build
+
+# ===============================
+
 target/
-.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
+# Maven Wrapper
+
+.mvn/wrapper/maven-wrapper.jar
+
+# ===============================
+
+# Logs
+
+# ===============================
+
+*.log
+logs/
+
+# ===============================
+
+# Spring Boot
+
+# ===============================
+
+HELP.md
+
+# ===============================
+
+# Environment Variables (IMPORTANT)
+
+# ===============================
+
+.env
+.env.*
+*.env
+
+# ===============================
+
+# Eclipse / STS
+
+# ===============================
+
 .apt_generated
 .classpath
 .factorypath
@@ -13,13 +53,23 @@ target/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
-.idea
+# ===============================
+
+# IntelliJ IDEA
+
+# ===============================
+
+.idea/
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
+# ===============================
+
+# NetBeans
+
+# ===============================
+
 /nbproject/private/
 /nbbuild/
 /dist/
@@ -29,5 +79,19 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
+# ===============================
+
+# VS Code
+
+# ===============================
+
 .vscode/
+
+# ===============================
+
+# OS files
+
+# ===============================
+
+.DS_Store
+Thumbs.db
