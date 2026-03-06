@@ -11,10 +11,13 @@ public class CorsConfig implements WebMvcConfigurer {
     @Value("${FRONTEND_URL}")
     private String frontendUrl;
 
+    @Value("${FRONTEND_URL_VERCEL}")
+    private String frontendUrlVercel;
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins(frontendUrl)
+                .allowedOrigins(frontendUrl,frontendUrlVercel)
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*");
     }
