@@ -2,7 +2,7 @@
 
 A full-stack Student Management Application built with **Spring Boot** (REST API) and **React.js**, featuring CRUD operations, admin authentication, and student data management with a **MySQL** database.
 
-Live Demo: [student-management-app-virid.vercel.app](https://student-management-app-virid.vercel.app)
+Live Demo: [Student Management CRED Application](https://student.akhilrt.com)
 
 ---
 
