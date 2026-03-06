@@ -14,6 +14,7 @@ function Navbar() {
 
   const logout = () => {
     localStorage.removeItem("isAdminLoggedIn");
+    localStorage.removeItem("token");
     navigate("/login");
   };
 

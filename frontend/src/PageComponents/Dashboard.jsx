@@ -8,7 +8,11 @@ function Dashboard() {
   const [totalStudents, setTotalStudents] = useState(0);
 
   useEffect(() => {
-    fetch(`${API}/api/students?page=0&size=1`)
+    fetch(`${API}/api/students?page=0&size=1`, {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    })
       .then(res => res.json())
       .then(data => setTotalStudents(data.totalItems || 0))
       .catch(err => console.error(err));

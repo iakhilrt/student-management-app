@@ -23,9 +23,9 @@ public class AdminController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AdminLoginRequest request) {
         try {
-            adminService.login(request);
+            String token = adminService.login(request);
             return ResponseHandler.generate(
-                    Map.of("username", request.getUsername()),
+                    Map.of("username", request.getUsername(), "token", token),
                     "Login Successfully",
                     HttpStatus.OK
             );

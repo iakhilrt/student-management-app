@@ -19,60 +19,60 @@ function AdminLogin() {
     });
 
     if (response.ok) {
+      const data = await response.json();
       localStorage.setItem("isAdminLoggedIn", "true");
+      localStorage.setItem("token", data.data.token); // store JWT
       navigate("/dashboard");
-    } else {
-      alert("Invalid credentials");
     }
   };
 
   return (
-  <div className="login-wrapper">
-    <div className="container">
-      <div className="row justify-content-center align-items-center">
-        
-        <div className="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4">
-          <div className="login-card">
+    <div className="login-wrapper">
+      <div className="container">
+        <div className="row justify-content-center align-items-center">
 
-            <h3 className="fw-bold mb-4 text-center">
-              Admin Login
-            </h3>
+          <div className="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4">
+            <div className="login-card">
 
-            <form onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                />
-              </div>
+              <h3 className="fw-bold mb-4 text-center">
+                Admin Login
+              </h3>
 
-              <div className="mb-4">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                  />
+                </div>
 
-              <button className="btn btn-primary w-100">
-                Login
-              </button>
-            </form>
+                <div className="mb-4">
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
 
+                <button className="btn btn-primary w-100">
+                  Login
+                </button>
+              </form>
+
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default AdminLogin;

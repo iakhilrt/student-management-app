@@ -19,7 +19,11 @@ function StudentDetails() {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await fetch(`${API}/api/students/${id}`);
+        const response = await fetch(`${API}/api/students/${id}`, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+          }
+        });
 
         if (!response.ok) {
           throw new Error("Failed to fetch student");

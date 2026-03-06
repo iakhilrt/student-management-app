@@ -38,7 +38,8 @@ function AddStudent() {
       const response = await fetch(`${API}/api/students/register`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify(studentData)
       });
@@ -111,8 +112,8 @@ function AddStudent() {
                           ["BTech", "MTech", "MCA", "MBA"].includes(student.course)
                             ? student.course
                             : student.course
-                            ? "Other"
-                            : ""
+                              ? "Other"
+                              : ""
                         }
                         onChange={(e) => {
                           const value = e.target.value;

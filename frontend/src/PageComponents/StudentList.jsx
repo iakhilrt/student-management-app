@@ -13,7 +13,11 @@ function StudentList() {
 
   useEffect(() => {
     const fetchStudents = async () => {
-      const res = await fetch(`${API}/api/students?page=${page}&size=10`);
+      const res = await fetch(`${API}/api/students?page=${page}&size=10`, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        }
+      });
       const data = await res.json();
 
       setStudents(data.data);
@@ -28,6 +32,9 @@ function StudentList() {
 
     await fetch(`${API}/api/students/delete/${id}`, {
       method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
     });
 
     setStudents((prev) => prev.filter((s) => s.id !== id));
