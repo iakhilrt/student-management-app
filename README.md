@@ -1,14 +1,15 @@
 # Student Management App
 
-A full-stack Student Management Application built with **Spring Boot** (REST API) and **React.js**, featuring CRUD operations, admin authentication, and student data management with a **MySQL** database.
+A full-stack Student Management Application built with **Spring Boot** (REST API) and **React.js**, featuring CRUD operations, JWT-based admin authentication, and student data management with a **MySQL** database.
 
-Live Demo: [Student Management CRED Application](https://student.akhilrt.com)
+Live Demo: [Student Management Application](https://student.akhilrt.com)
 
 ---
 
 ## Features
 
-- Secure Admin Authentication (Login / Logout)
+- Secure Admin Authentication with JWT (Login / Logout)
+- Protected Routes — all dashboard pages require a valid token
 - Full CRUD Operations — Add, View, Edit, Delete students
 - Paginated Student List
 - Admin Dashboard with live stats
@@ -24,6 +25,7 @@ Live Demo: [Student Management CRED Application](https://student.akhilrt.com)
 | Frontend   | React.js                          |
 | Backend    | Spring Boot (Java)                |
 | Database   | MySQL                             |
+| Auth       | JWT (JSON Web Token)              |
 | Styling    | CSS                               |
 | Deployment | Vercel (Frontend)                 |
 |            | Render (Backend)                  |
@@ -43,7 +45,6 @@ Live Demo: [Student Management CRED Application](https://student.akhilrt.com)
 ---
 
 ### 1. Clone the Repository
-
 ```bash
 git clone https://github.com/iakhilrt/student-management-app.git
 cd student-management-app
@@ -52,22 +53,37 @@ cd student-management-app
 ---
 
 ### 2. Backend Setup (Spring Boot)
-
 ```bash
 cd backend
 ```
 
-Configure the database in `src/main/resources/application.properties`:
-
+Configure `src/main/resources/application.properties`:
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/student_db
-spring.datasource.username=your_username
-spring.datasource.password=your_password
+spring.application.name=student-management
+
+spring.datasource.url=${DB_URL}
+spring.datasource.username=${DB_USERNAME}
+spring.datasource.password=${DB_PASSWORD}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
 spring.jpa.hibernate.ddl-auto=update
+
+server.port=${PORT:8080}
+
+jwt.secret=${JWT_SECRET}
+jwt.expiration=86400000
+```
+
+Set these environment variables (or in Render dashboard):
+```
+DB_URL=jdbc:mysql://your_host/student_db
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+JWT_SECRET=your_jwt_secret_key
 ```
 
 Run the backend:
-
 ```bash
 mvn spring-boot:run
 ```
@@ -77,41 +93,11 @@ Backend runs on: `http://localhost:8080`
 ---
 
 ### 3. Frontend Setup (React)
-
 ```bash
 cd frontend
 npm install
-npm start
+npm run dev
 ```
-
-Frontend runs on: `http://localhost:3000`
-
----
-
-## API Endpoints
-
-| Method   | Endpoint                  | Description              |
-|----------|---------------------------|--------------------------|
-| `POST`   | `/api/auth/login`         | Admin login              |
-| `GET`    | `/api/students`           | Get all students (paged) |
-| `GET`    | `/api/students/{id}`      | Get student by ID        |
-| `POST`   | `/api/students`           | Add a new student        |
-| `PUT`    | `/api/students/{id}`      | Update student           |
-| `DELETE` | `/api/students/{id}`      | Delete student           |
-
----
-
-## Database Setup
-
-```sql
-CREATE DATABASE student_db;
-```
-
-Spring Boot will auto-create the required tables on first run.
-
----
-
-### Environment Variables
 
 Create a `.env` file inside the `frontend/` directory:
 ```dotenv
@@ -121,6 +107,33 @@ VITE_API_URL=http://localhost:8080
 > For production, replace with your Render backend URL:
 > `VITE_API_URL=https://your-app.onrender.com`
 
+Frontend runs on: `http://localhost:5173`
+
+---
+
+## API Endpoints
+
+| Method   | Endpoint                          | Description              | Auth Required |
+|----------|-----------------------------------|--------------------------|---------------|
+| `POST`   | `/api/admin/login`                | Admin login              | ❌            |
+| `GET`    | `/api/students`                   | Get all students (paged) | ✅            |
+| `GET`    | `/api/students/{id}`              | Get student by ID        | ✅            |
+| `POST`   | `/api/students/register`          | Add a new student        | ✅            |
+| `PUT`    | `/api/students/update/{id}`       | Update student           | ✅            |
+| `DELETE` | `/api/students/delete/{id}`       | Delete student           | ✅            |
+
+> All protected endpoints require the header:
+> `Authorization: Bearer <token>`
+
+---
+
+## Database Setup
+```sql
+CREATE DATABASE student_db;
+```
+
+Spring Boot will auto-create the required tables on first run.
+
 ---
 
 ## Project Structure
@@ -129,11 +142,15 @@ student-management-app/
 ├── backend/
 │   ├── src/
 │   │   └── main/
-│   │       ├── java/com/studentapp/
+│   │       ├── java/com/student/studentmanagement/
+│   │       │   ├── config/
 │   │       │   ├── controller/
+│   │       │   ├── filter/
 │   │       │   ├── model/
 │   │       │   ├── repository/
-│   │       │   └── service/
+│   │       │   ├── response/
+│   │       │   ├── service/
+│   │       │   └── util/
 │   │       └── resources/
 │   │           └── application.properties
 │   └── pom.xml
@@ -141,7 +158,7 @@ student-management-app/
 │   ├── src/
 │   │   ├── components/
 │   │   ├── pages/
-│   │   └── App.js
+│   │   └── App.jsx
 │   ├── .env
 │   ├── package.json
 │   └── vercel.json
