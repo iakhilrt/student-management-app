@@ -1,0 +1,33 @@
+name: Deploy Student App Backend
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SSH into EC2 and deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          command_timeout: 30m
+          script: |
+            cd ~/student-management-app/backend
+            git pull origin main
+            docker build -t std-app-backend .
+            docker stop student-app || true
+            docker rm student-app || true
+            docker run -d \
+              --name student-app \
+              --env-file ~/student-app.env \
+              -p 8082:8080 \
+              --restart always \
+              std-app-backend
